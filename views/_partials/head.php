@@ -1,9 +1,9 @@
 <?php
 	session_start();
-	$base_url	= "http://localhost/agen_wisata/views/";
-	$url		= "http://localhost/agen_wisata/";
+	$base_url	= "http://localhost/Agen-Wisata/views/";
+	$url		= "http://localhost/Agen-Wisata/";
 	require_once __DIR__.'/../../app/koneksi.php';
-	$id_ses		= $_SESSION['id'];
+	$id_ses		= isset($_SESSION['id']);
 	$user		= query("SELECT * FROM user WHERE id = '$id_ses'");
 	$jmlh		= count(query("SELECT * FROM pemesanan WHERE id_user = '$id_ses'"));
 ?>
@@ -35,7 +35,7 @@
 </head>
 <body>
 	<div id="page">	
-		<header class="header"> <?php if($_SESSION['role'] == '2'){ ?>
+		<header class="header"> <?php if(isset($_SESSION['role']) == '2'){ ?>
 			<ul id="top_menu">
 				<li><a href="<?= $base_url ?>wisata/keranjang" class="cart-menu-btn mx-auto" title="Pesanan"><?php if($jmlh != NULL){?><strong><?= $jmlh ?></strong><?php } ?></a></li>
 			</ul>
